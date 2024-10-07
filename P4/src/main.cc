@@ -11,9 +11,10 @@
 
 #include <regex>
 #include <iostream>
-#include <fstream>  // Añadido para manejar archivos
+#include <fstream>
 #include <string>
-using namespace std;
+
+#include "../include/codigo.h"
 
 void printUsage()
 {
@@ -47,15 +48,33 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    std::string line;
-    std::string content;
+    std::string line;    
+    Codigo variables;
+    Codigo bucles;
+    int line_number = 1; 
+
+    outputFile << "PROGRAMM: " << argv[1] << std::endl << std::endl;
+
     while (std::getline(inputFile, line)) {
-        content += line + "\n"; // Agrega la línea al contenido y un salto de línea
+        //Variables Int y Double
+        std::string outputInt = variables.ObtainInt(line,line_number);
+        std::string outputDouble = variables.ObtainDouble(line,line_number);
+        //Bucles For y While
+        std::string outputFor = bucles.ObtainFor(line,line_number);
+
+        line_number++;
+
+        if (outputInt != ""){
+            outputFile << outputInt << std::endl;
+        }
+        if (outputDouble != ""){
+            outputFile << outputDouble << std::endl;
+        }
+        if (outputFor != ""){
+            outputFile << outputFor << std::endl;
+        }
     }
-
-    // Muestra el contenido
-    std::cout << "Contenido del archivo:\n" << content;
-
+    
     inputFile.close();
     outputFile.close();
     return 0;
