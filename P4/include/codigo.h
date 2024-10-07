@@ -24,9 +24,12 @@ class Codigo{
     ~Codigo() = default;
 
     //Métodos
+    std::string ObtainComments(std::string content, int line_number);
     std::string ObtainInt(std::string content, int line_number);
     std::string ObtainDouble(std::string content, int line_number);
     std::string ObtainFor(std::string content, int line_number);
+    std::string ObtainWhile(std::string content, int line_number);
+    std::string ObtainMain(std::string content, int line_number);
 
 
   private:

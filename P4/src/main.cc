@@ -50,31 +50,70 @@ int main(int argc, char *argv[])
 
     std::string line;    
     Codigo variables;
-    Codigo bucles;
-    int line_number = 1; 
+    Codigo bucles; 
 
-    outputFile << "PROGRAMM: " << argv[1] << std::endl << std::endl;
+    outputFile << "PROGRAMM: " << argv[1] << std::endl; // Mostramos nombre del programa
 
+    outputFile << "\nDESCRIPTION: " << std::endl; // Mostramos descripción del programa
+    int line_number = 1;
+    std::string outputComments;
     while (std::getline(inputFile, line)) {
-        //Variables Int y Double
-        std::string outputInt = variables.ObtainInt(line,line_number);
-        std::string outputDouble = variables.ObtainDouble(line,line_number);
-        //Bucles For y While
-        std::string outputFor = bucles.ObtainFor(line,line_number);
-
+        //Comentarios
+        outputComments = variables.ObtainComments(line,line_number);
+        if (outputComments != ""){
+            outputFile << outputComments << std::endl;
+        }
         line_number++;
+    }
 
+
+    line_number = 1;
+    std::string outputInt;
+    std::string outputDouble;
+    outputFile << "\nVARIBALES: " << argv[1] << std::endl;
+    while (std::getline(inputFile, line)) {
+        //Variables Int
+        outputInt = variables.ObtainInt(line,line_number);
         if (outputInt != ""){
             outputFile << outputInt << std::endl;
         }
+        //Variables Double
+        outputDouble = variables.ObtainDouble(line,line_number);
         if (outputDouble != ""){
             outputFile << outputDouble << std::endl;
         }
+        line_number++;
+    }
+
+    line_number = 1;
+    std::string outputFor;
+    std::string outputWhile;
+    outputFile << "\nSTATEMENTS: " << std::endl;
+    while (std::getline(inputFile, line)) {
+        //Bucle For
+        outputFor = bucles.ObtainFor(line,line_number);
         if (outputFor != ""){
             outputFile << outputFor << std::endl;
         }
+        //Bucle While
+        outputWhile = bucles.ObtainWhile(line,line_number);
+        if (outputWhile != ""){
+            outputFile << outputWhile << std::endl;
+        }
+        line_number++;
     }
-    
+
+    line_number = 1;
+    std::string outputMain;
+    outputFile << "\nMAIN: " << std::endl;
+    while (std::getline(inputFile, line)) {
+        outputMain = variables.ObtainMain(line,line_number);
+        outputFile << outputMain << std::endl;
+    }
+
+    outputFile << "\nCOMMENTS: " << std::endl;
+
+
     inputFile.close();
     outputFile.close();
     return 0;

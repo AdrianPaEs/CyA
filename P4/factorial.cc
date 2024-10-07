@@ -25,6 +25,7 @@ int Factorial(int number) {
             }
             return factorial;
     }
+    double a = 1.0;
 }
 
 int main() {
