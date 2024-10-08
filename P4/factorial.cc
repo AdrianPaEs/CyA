@@ -9,31 +9,31 @@
  * @see https://github.com/IB-2023-2024/IB-class-code-examples/
  */
 
-#include <iostream>
 #include <cassert>
+#include <iostream>
 
 // Returns the factorial of the argument
 int Factorial(int number) {
-    switch (number) {
-        case 0:
-        case 1:
-            return 1;
-        default:
-            int factorial = 1;
-            for (int i = 1; i <= number; ++i) {
-                factorial *= i;
-            }
-            return factorial;
+  switch (number) {
+  case 0:
+  case 1:
+    return 1;
+  default:
+    int factorial = 1;
+    for (int i = 1; i <= number; ++i) {
+      factorial *= i;
     }
-    double a = 1.0;
+    return factorial;
+  }
+  double a = 1.0;
 }
 
 int main() {
-    std::cout << "Introduzca el numero de factoriales a calcular: ";
-    int limit;
-    std::cin >> limit;
-    for (int i = 1; i <= limit; ++i) {
-        std::cout << i << "! = " << (double)Factorial(i) << std::endl;
-    }
-    return 0;
+  std::cout << "Introduzca el numero de factoriales a calcular: ";
+  int limit;
+  std::cin >> limit;
+  for (int i = 1; i <= limit; ++i) {
+    std::cout << i << "! = " << (double)Factorial(i) << std::endl;
+  }
+  return 0;
 }
