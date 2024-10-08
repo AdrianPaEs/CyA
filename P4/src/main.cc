@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
   std::ofstream outputFile(outputFileName);
   if (!outputFile.is_open()) {
     std::cout << "Error: No se puede crear el fichero de salida: "
-              << outputFileName << "\n"; // Cambiado a std::cerr
+              << outputFileName << "\n";  // Cambiado a std::cerr
     return 1;
   }
 
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
   Codigo bucles;
 
   outputFile << "PROGRAMM: " << argv[1]
-             << std::endl; // Mostramos nombre del programa
+             << std::endl;  // Mostramos nombre del programa
 
   std::vector<std::string> filetxt;
   while (std::getline(inputFile, line)) {
@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
   int line_number = 1;
   std::string outputDescription;
   outputFile << "\nDESCRIPTION: "
-             << std::endl; // Mostramos descripción del programa
+             << std::endl;  // Mostramos descripción del programa
   for (int i = 0; i < filetxt.size(); i++) {
     // Descripción
     outputDescription = variables.ObtainDescription(filetxt[i], line_number);
@@ -74,7 +74,7 @@ int main(int argc, char *argv[]) {
   std::string outputInt;
   std::string outputDouble;
   outputFile << "\nVARIBALES: " << argv[1]
-             << std::endl; // Mostramos variables del programa
+             << std::endl;  // Mostramos variables del programa
   for (int i = 0; i < filetxt.size(); i++) {
     // Variables Int
     outputInt = variables.ObtainInt(filetxt[i], line_number);
@@ -92,7 +92,7 @@ int main(int argc, char *argv[]) {
   line_number = 1;
   std::string outputFor;
   std::string outputWhile;
-  outputFile << "\nSTATEMENTS: " << std::endl; // Mostramos bucles del programa
+  outputFile << "\nSTATEMENTS: " << std::endl;  // Mostramos bucles del programa
   for (int i = 0; i < filetxt.size(); i++) {
     // Bucle For
     outputFor = bucles.ObtainFor(filetxt[i], line_number);
@@ -126,7 +126,7 @@ int main(int argc, char *argv[]) {
   line_number = 1;
   std::string outputComments;
   outputFile << "\nCOMMENTS: "
-             << std::endl; // Mostramos comentarios del programa
+             << std::endl;  // Mostramos comentarios del programa
   for (int i = 0; i < filetxt.size(); i++) {
     // Descripción
     outputComments = variables.ObtainComments(filetxt[i], line_number);

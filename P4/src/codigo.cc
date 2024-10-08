@@ -14,9 +14,9 @@
 // Funcion que obtiene la descripción del programa
 std::string Codigo::ObtainDescription(std::string content, int line_number) {
   std::regex regex_description(
-      R"(^\s*(\/\*\*|\*\/|\*\s*.*))"); // Expresion regular para buscar la
-                                       // descripción del programa
-  std::smatch match; // Clase que almacena los resultados de la busqueda
+      R"(^\s*(\/\*\*|\*\/|\*\s*.*))");  // Expresion regular para buscar la
+                                        // descripción del programa
+  std::smatch match;  // Clase que almacena los resultados de la busqueda
   if (std::regex_search(content, match, regex_description)) {
     line_number_ = line_number;
     std::string output = match.str();
@@ -34,11 +34,11 @@ std::string Codigo::ObtainDescription(std::string content, int line_number) {
 // Funcion que obtiene las variables de tipo int
 std::string Codigo::ObtainInt(std::string content, int line_number) {
   std::regex regex_int(
-      R"(^\s*int\s+([a-zA-Z_]\w*(\s*,\s*[a-zA-Z_]\w*)*)?\s*(=\s*\d+)?\s*;)"); // Expresion regular para buscar variables de tipo int
+      R"(^\s*int\s+([a-zA-Z_]\w*(\s*,\s*[a-zA-Z_]\w*)*)?\s*(=\s*\d+)?\s*;)");  // Expresion regular para buscar variables de tipo int
   std::smatch match;
   if (std::regex_search(
           content, match,
-          regex_int)) // Busca la expresion regular en el contenido
+          regex_int))  // Busca la expresion regular en el contenido
   {
     line_number_ = line_number;
     variable_int_ = trimLeft(match.str());

@@ -17,31 +17,31 @@
 #include <utility>
 
 class Codigo {
-public:
+ public:
   // Constructor
   Codigo() = default;
   // Destructor
   ~Codigo() = default;
 
   // Métodos
-  std::string
-  ObtainDescription(std::string content,
-                    int line_number); // Obtiene la descripción del programa
+  std::string ObtainDescription(
+      std::string content,
+      int line_number);  // Obtiene la descripción del programa
   std::string ObtainInt(std::string content,
-                        int line_number); // Obtiene las variables de tipo int
-  std::string
-  ObtainDouble(std::string content,
-               int line_number); // Obtiene las variables de tipo double
+                        int line_number);  // Obtiene las variables de tipo int
+  std::string ObtainDouble(
+      std::string content,
+      int line_number);  // Obtiene las variables de tipo double
   std::string ObtainFor(std::string content,
-                        int line_number); // Obtiene los bucles for
+                        int line_number);  // Obtiene los bucles for
   std::string ObtainWhile(std::string content,
-                          int line_number); // Obtiene los bucles while
+                          int line_number);  // Obtiene los bucles while
   std::string ObtainMain(std::string content,
-                         int line_number); // Obtiene la función main
+                         int line_number);  // Obtiene la función main
   std::string ObtainComments(std::string content,
-                             int line_number); // Obtiene los comentarios
+                             int line_number);  // Obtiene los comentarios
 
-private:
+ private:
   // Atributos
   std::string variable_int_;
   std::string variable_double_;
@@ -50,9 +50,13 @@ private:
   int aux1_ = 1;
   int aux2_ = 1;
 
-  std::string
-  trimLeft(const std::string &str) { // Elimina los espacios a la izquierda
-    auto start = std::find_if_not(str.begin(), str.end(), ::isspace); // Busca el primer caracter que no sea un espacio
-    return std::string(start, str.end()); // Devuelve la cadena sin los espacios a la izquierda
+  std::string trimLeft(
+      const std::string &str) {  // Elimina los espacios a la izquierda
+    auto start = std::find_if_not(
+        str.begin(), str.end(),
+        ::isspace);  // Busca el primer caracter que no sea un espacio
+    return std::string(
+        start,
+        str.end());  // Devuelve la cadena sin los espacios a la izquierda
   }
 };
