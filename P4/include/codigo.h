@@ -49,4 +49,10 @@ private:
   int aux_ = 0;
   int aux1_ = 1;
   int aux2_ = 1;
+
+  std::string
+  trimLeft(const std::string &str) { // Elimina los espacios a la izquierda
+    auto start = std::find_if_not(str.begin(), str.end(), ::isspace); // Busca el primer caracter que no sea un espacio
+    return std::string(start, str.end()); // Devuelve la cadena sin los espacios a la izquierda
+  }
 };

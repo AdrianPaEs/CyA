@@ -11,6 +11,7 @@
 
 #include "../include/codigo.h"
 
+// Funcion que obtiene la descripción del programa
 std::string Codigo::ObtainDescription(std::string content, int line_number) {
   std::regex regex_description(
       R"(^\s*(\/\*\*|\*\/|\*\s*.*))"); // Expresion regular para buscar la
@@ -19,10 +20,9 @@ std::string Codigo::ObtainDescription(std::string content, int line_number) {
   if (std::regex_search(content, match, regex_description)) {
     line_number_ = line_number;
     std::string output = match.str();
-    if (aux1_ < line_number_){
+    if (aux1_ < line_number_) {
       aux2_ = line_number_;
-    }
-    else{
+    } else {
       aux1_ = line_number_;
     }
     aux_ = 1;
@@ -31,6 +31,7 @@ std::string Codigo::ObtainDescription(std::string content, int line_number) {
   return "";
 }
 
+// Funcion que obtiene las variables de tipo int
 std::string Codigo::ObtainInt(std::string content, int line_number) {
   std::regex regex_int(
       R"(^\s*int\s+([a-zA-Z_]\w*(\s*,\s*[a-zA-Z_]\w*)*)?\s*(=\s*\d+)?\s*;)"); // Expresion regular para buscar variables de tipo int
@@ -40,7 +41,7 @@ std::string Codigo::ObtainInt(std::string content, int line_number) {
           regex_int)) // Busca la expresion regular en el contenido
   {
     line_number_ = line_number;
-    variable_int_ = match.str();
+    variable_int_ = trimLeft(match.str());
     std::string output = "[Line " + std::to_string(line_number_) + "]" +
                          " INT: " + variable_int_;
     return output;
@@ -48,13 +49,14 @@ std::string Codigo::ObtainInt(std::string content, int line_number) {
   return "";
 }
 
+// Funcion que obtiene las variables de tipo double
 std::string Codigo::ObtainDouble(std::string content, int line_number) {
   std::regex regex_double(
       R"(^\s*double\s+([a-zA-Z_]\w*(\s*,\s*[a-zA-Z_]\w*)*)?\s*(=\s*\d+(\.\d+)?)?\s*;)");
   std::smatch match;
   if (std::regex_search(content, match, regex_double)) {
     line_number_ = line_number;
-    variable_double_ = match.str();
+    variable_double_ = trimLeft(match.str());
     std::string output = "[Line " + std::to_string(line_number_) + "]" +
                          " DOUBLE: " + variable_double_;
     return output;
@@ -62,6 +64,7 @@ std::string Codigo::ObtainDouble(std::string content, int line_number) {
   return "";
 }
 
+// Funcion que obtiene los bucles for
 std::string Codigo::ObtainFor(std::string content, int line_number) {
   std::regex regex_for(R"(^\s*for\s*\()");
   std::smatch match;
@@ -74,6 +77,7 @@ std::string Codigo::ObtainFor(std::string content, int line_number) {
   return "";
 }
 
+// Funcion que obtiene los bucles while
 std::string Codigo::ObtainWhile(std::string content, int line_number) {
   std::regex regex_while(R"(^\s*while\s*\()");
   std::smatch match;
@@ -86,6 +90,7 @@ std::string Codigo::ObtainWhile(std::string content, int line_number) {
   return "";
 }
 
+// Funcion que obtiene la función main
 std::string Codigo::ObtainMain(std::string content, int line_number) {
   std::regex regex_main(R"((\s*\D*)main\s*)");
   std::smatch match;
@@ -98,16 +103,19 @@ std::string Codigo::ObtainMain(std::string content, int line_number) {
   }
 }
 
+// Funcion que obtiene los comentarios
 std::string Codigo::ObtainComments(std::string content, int line_number) {
   std::regex regex_comments1(R"(^\/\/(.)*)");
   std::smatch match;
   if (std::regex_search(content, match, regex_comments1)) {
     line_number_ = line_number;
-    std::string output = "[Line " + std::to_string(line_number_) + "] " + match.str();
+    std::string output =
+        "[Line " + std::to_string(line_number_) + "] " + match.str();
     return output;
   }
-  if(aux_ == 1){
-    std::string output = "[Line " + std::to_string(aux1_) + "-" + std::to_string(aux2_) + "] DESCRIPTION" ;
+  if (aux_ == 1) {
+    std::string output = "[Line " + std::to_string(aux1_) + "-" +
+                         std::to_string(aux2_) + "] DESCRIPTION";
     aux_ = 2;
     return output;
   }

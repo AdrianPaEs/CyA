@@ -13,9 +13,9 @@ DESCRIPTION:
  */
 
 VARIBALES: factorial.cc
-[Line 22] INT:     int factorial = 1;
-[Line 28] DOUBLE:   double a = 1.0;
-[Line 33] INT:   int limit;
+[Line 22] INT: int factorial = 1;
+[Line 28] DOUBLE: double a = 1.0;
+[Line 33] INT: int limit;
 
 STATEMENTS: 
 [Line 23] LOOP: for
